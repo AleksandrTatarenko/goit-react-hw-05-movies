@@ -26,26 +26,11 @@ const Movies = () => {
             } finally {
             };
         };
-        setSearchQuery(searchParams.get('query'))
-        if (searchQuery !== null) {
-            fetchMovies(searchQuery);
-        };
-    }, []);
-
-    useEffect(() => {
-        async function fetchMovies(searchQuery) {
-            try {
-                const movies = await api.fetchMovies(searchQuery);
-                setMovies(movies.results);
-            } catch (error) {
-                console.log(error);
-            } finally {
-            };
-        };
+        setSearchQuery(searchParams.get('query'));
         if (searchQuery !== null) {
             fetchMovies(searchQuery);
         }
-    }, [searchQuery]);
+    }, [searchQuery, searchParams]);
 
     const onSubmit = (searchQuery) => {
         setSearchQuery(searchQuery.toString());

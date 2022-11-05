@@ -43,7 +43,7 @@ const MovieDetails = () => {
             };
         };
         fetchMoviesById(params.movieId)
-    }, [])
+    }, [params.movieId])
 
     return (<Container>
         <Link to={goBack}>Go back</Link>

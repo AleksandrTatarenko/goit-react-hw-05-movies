@@ -19,7 +19,7 @@ const Cast = () => {
             };
         };
         fetchCredits(params.movieId);
-    }, []);
+    }, [params.movieId]);
     
     return (<div>
         {cast.length > 0 ? <ul>
