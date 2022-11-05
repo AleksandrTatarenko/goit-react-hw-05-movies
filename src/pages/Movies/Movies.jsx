@@ -10,7 +10,7 @@ font-weight: normal;
 font-size: 16px;
 `
 
-export const Movies = () => {
+const Movies = () => {
     const [searchQuery, setSearchQuery] = useState(null);
     const [movies, setMovies] = useState(null);
     const location = useLocation();
@@ -26,10 +26,10 @@ export const Movies = () => {
             } finally {
             };
         };
-            setSearchQuery(searchParams.get('query'))
-            if (searchQuery !== null) {
-                fetchMovies(searchQuery);
-        }; 
+        setSearchQuery(searchParams.get('query'))
+        if (searchQuery !== null) {
+            fetchMovies(searchQuery);
+        };
     }, []);
 
     useEffect(() => {
@@ -50,17 +50,19 @@ export const Movies = () => {
     const onSubmit = (searchQuery) => {
         setSearchQuery(searchQuery.toString());
         setSearchParams(`?query=${searchQuery}`);
-  };
+    };
 
     return (<Container>
         <SearchForm onSubmit={onSubmit} />
-        {movies?<List>
+        {movies ? <List>
             {movies.map(({ id, title, name }) => {
                 return (<Item key={id}>
-                    <Link to={`${id}`} state={{from: location}}>{title ? title : name}</Link>
+                    <Link to={`${id}`} state={{ from: location }}>{title ? title : name}</Link>
                 </Item>)
             })}
-        </List>:null}
+        </List> : null}
     </Container>
-    )
-}
+    );
+};
+
+export default Movies;

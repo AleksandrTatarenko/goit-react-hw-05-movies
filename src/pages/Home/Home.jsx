@@ -9,7 +9,7 @@ font-weight: normal;
 font-size: 16px;
 `
 
-export const Home = () => {
+const Home = () => {
     const [moviesInTrend, setMoviesInTrend] = useState([]);
 
   useEffect(() => {
@@ -38,3 +38,5 @@ export const Home = () => {
         </List>
     </Container>);
 };
+
+export default Home;

@@ -17,7 +17,7 @@ const Link = styled(NavLink)`
   }
 `;
 
-export const Layout = () => {
+export const Layout =() => {
     return (<div>
       <Header>
         <Container>

@@ -25,7 +25,7 @@ border-radius: 5px;
 };
 `
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
     const [movie, setMovie] = useState({});
     const params = useParams();
     const imageUrl = "https://image.tmdb.org/t/p/w500";
@@ -34,28 +34,28 @@ export const MovieDetails = () => {
 
     useEffect(() => {
         async function fetchMoviesById(id) {
-      try {
-        const movie = await api.fetchMoviesDetails(id);
-          setMovie(movie);
-      } catch (error) {
-        console.log(error);
-      } finally {
-      };   
+            try {
+                const movie = await api.fetchMoviesDetails(id);
+                setMovie(movie);
+            } catch (error) {
+                console.log(error);
+            } finally {
+            };
         };
         fetchMoviesById(params.movieId)
-    },[])
+    }, [])
 
     return (<Container>
-            <Link to={goBack}>Go back</Link>
+        <Link to={goBack}>Go back</Link>
         <Box>
-            {Object.keys(movie).length!==0?<Image src={imageUrl + movie.poster_path} alt=''></Image>:null}
+            {Object.keys(movie).length !== 0 ? <Image src={imageUrl + movie.poster_path} alt=''></Image> : null}
             <InfoBox>
                 <Title>{movie.title}</Title>
                 <p>User Score: {Math.trunc(movie.vote_average * 10)}%</p>
                 <h3>Overview</h3>
                 <p>{movie.overview}</p>
                 <h3>Genres</h3>
-                <p>{Object.keys(movie).length!==0?movie.genres.map(genre => { return genre.name; }).join(' '):null}</p>
+                <p>{Object.keys(movie).length !== 0 ? movie.genres.map(genre => { return genre.name; }).join(' ') : null}</p>
             </InfoBox>
         </Box>
         <hr></hr>
@@ -68,6 +68,7 @@ export const MovieDetails = () => {
         <Suspense fallback={<div>Loading...</div>}>
             <Outlet />
         </Suspense>
-    </Container>)
-}
+    </Container>);
+};
 
+export default MovieDetails;

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import api from 'services/api';
 
-export const Cast = () => {
+const Cast = () => {
     const [cast, setCast] = useState([]);
     const params = useParams();
     const imageUrl = "https://image.tmdb.org/t/p/w500";
@@ -22,14 +22,15 @@ export const Cast = () => {
     }, []);
     
     return (<div>
-        {cast.length>0?<ul>
+        {cast.length > 0 ? <ul>
             {cast.map(({ cast_id, name, profile_path, character }) => {
                 return (<li key={cast_id}>
-                    <img src={profile_path?`${imageUrl + profile_path}`:placeholder} alt="" width="150px"/>
+                    <img src={profile_path ? `${imageUrl + profile_path}` : placeholder} alt="" width="150px" />
                     <p>{name}</p>
                     <p>Character: {character}</p>
                 </li>);
             })}
-        </ul>:<p>We don't have cast for this movie.</p>}
+        </ul> : <p>We don't have cast for this movie.</p>}
     </div>);
-}
+};
+export default Cast;
