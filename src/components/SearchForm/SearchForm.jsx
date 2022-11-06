@@ -1,10 +1,15 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Form, Button, Input } from 'components/SearchForm/SearchForm.styled';
 
-
-export const SearchForm = ({onSubmit}) => {
+export const SearchForm = ({onSubmit, query}) => {
     const [searchQuery, setSearchQuery] = useState('');
+
+    useEffect(() => {
+        if (query) {
+            setSearchQuery(query);
+        }
+    }, [query]);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -24,7 +29,7 @@ export const SearchForm = ({onSubmit}) => {
         <Form onSubmit={handleSubmit}>
              <Input
             onChange={handleChange}
-            value={searchQuery}        
+            value={searchQuery}       
             type="text"
             autocomplete="off"
             autoFocus
@@ -36,5 +41,6 @@ export const SearchForm = ({onSubmit}) => {
 }
 
 SearchForm.propTypes = {
-    onSubmit: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired,
+    query: PropTypes.string.isRequired
 }

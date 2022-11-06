@@ -38,7 +38,7 @@ const Movies = () => {
     };
 
     return (<Container>
-        <SearchForm onSubmit={onSubmit} />
+        <SearchForm onSubmit={onSubmit} query={searchParams.get('query')} />
         {movies ? <List>
             {movies.map(({ id, title, name }) => {
                 return (<Item key={id}>
